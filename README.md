@@ -15,41 +15,38 @@ The software contains Hamiltonian Cycle code that was developed by Basil Vandegr
 ## Help text
 
 Calling with either ''-h'' or with no parameters produces this help text:
-  <code - debruijn -h>
-  Usage: debruijn [-t | -v] <k> <n>
-           [<B> <guide function> <neural model>]
-           [<neural model #2>] [<neural model #3>] [-eval <SOA>]
-  Generate random and "path guided" de Bruijn cycles
+
+```
+<code - debruijn -h>
+Usage: debruijn [-t | -v] <k> <n>
+	[<B> <guide function> <neural model>]
+	[<neural model #2>] [<neural model #3>] [-eval <SOA>]
+Generate random and "path guided" de Bruijn cycles
   
-   Default output has one line of labels, separated by commas
-       -t: terse output (no delimiters)
-       -v: verbose output in "necklace" format
+Default output has one line of labels, separated by commas
+	-t: terse output (no delimiters)
+	-v: verbose output in "necklace" format
   
-     k: number of letters (maximum is 36)
-     n: length of the word (i.e., level of counterbalance)
-  
-   Specify parameters for path-guided cycle
-     B: number of bins for available transitions (integer between 1 and k^2)
-     guide function: can be specified in three different ways -
-                     HRF: guide with power spectrum of the BOLD HRF  -OR-
-                     path to .txt file containing guide function -OR-
-                     [Tmin,Tmax]: range of the periods of sinusoids
-                       (in units of labels) to use as a guide function
-     neural model: path to .txt file containing neural model for optimizing
-     neural model(#2,#3): optional; detection power only reported
-  
-   -eval: Evaluate detection power
-     SOA: stimulus-onset asynchrony (in ms)
-  
-  Detailed help: http://cfn.upenn.edu/aguirre/wiki/public:de_bruijn_software
-  
-  Reference: GK Aguirre, MG Mattar, L Magis-Weinberg. (2011)
-  de Bruijn cycles for neural decoding. NeuroImage 56: 1293-1300
-  
-  Code by: Marcelo Mattar (mattar@sas.upenn.edu)
-           Dongbo Hu (dongbo@mail.med.upenn.edu)
-           Hamiltonian circuit code from Basil Vandergriend
-             (http://webdocs.cs.ualberta.ca/~joe/Theses/vandegriend.html)
+  	k: number of letters (maximum is 36)
+	n: length of the word (i.e., level of counterbalance)
+
+Specify parameters for path-guided cycle
+	B: number of bins for available transitions (integer between 1 and k^2)
+	guide function: can be specified in three different ways -
+		HRF: guide with power spectrum of the BOLD HRF  -OR-
+		path to .txt file containing guide function -OR-
+		[Tmin,Tmax]: range of the periods of sinusoids
+		(in units of labels) to use as a guide function
+	neural model: path to .txt file containing neural model for optimizing
+	neural model(#2,#3): optional; detection power only reported
+  	-eval: Evaluate detection power
+	SOA: stimulus-onset asynchrony (in ms)
+
+Code by: Marcelo Mattar (mattar@sas.upenn.edu)
+	Dongbo Hu (dongbo@mail.med.upenn.edu)
+	Hamiltonian circuit code from Basil Vandergriend
+	(http://webdocs.cs.ualberta.ca/~joe/Theses/vandegriend.html)
+```
 
 ## Sequences and Cycles
 Full counterbalance is present with the de Bruijn _cycle_; for a linear sequence to exhibit complete counterbalance, the last n elements of the sequence must be presented prior to the start of the sequence to establish the context for the first stimulus. Moreover, it is optimal in BOLD fMRI studies to present 8-15 seconds of stimuli from the end of the sequence at the start, to allow the hemodynamic response to reach steady-state. The neural data corresponding to these initial stimuli may be dropped, resulting in a final fMRI signal that represent the entire sequence of stimuli, with the delayed and dispersed BOLD fMRI response to the neural sequence “wrapping around” from end to start. A similar "repeat and clip" technique may be used at the boundaries of scans if a lengthy de Bruijn sequence must be broken into portions for subject comfort.
