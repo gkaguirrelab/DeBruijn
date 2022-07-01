@@ -75,11 +75,12 @@ The *direct effect* is the neural response to a stimulus itself (as opposed to s
 
 To guide de Bruijn sequences for the detection of direct effects, construct the neural model to contain columns of expected relative magnitude of neural response. For example, an ever larger amplitude of response to the A, B, C, and D stimuli may be represented as:
 
-| o | A | B | C | D |
-| A | 1 | 2 | 3 | 4 |
-| B | 1 | 2 | 3 | 4 |
-| C | 1 | 2 | 3 | 4 |
-| D | 1 | 2 | 3 | 4 |
+| |A|B|C|D|
+|-|-|-|-|-|
+|A|1|2|3|4|
+|B|1|2|3|4|
+|C|1|2|3|4|
+|D|1|2|3|4|
 
 The resulting sequence will order the stimuli (within the constraints of counter-balance) to modulate the direct effect.
 
@@ -93,6 +94,7 @@ Neural adaptation (or habituation) is an example of a (symmetric) carry-over eff
 To design a sequence optimized for these effects, create a neural model which represents the effect of pair-wise transitions between the stimuli. The row index indicates the prior stimulus, and the column index indicates the current stimulus. This model, for example, contains both a symmetric (adaptation) effect, and an asymmetric bias effect:
 
 | |A|B|C|D|
+|-|-|-|-|-|
 |A|0|1|2|3|
 |B|1.5|0|1|2|
 |C|2.5|1.5|0|1|
