@@ -124,7 +124,7 @@ Given a particular hemodynamic response function, and a model of the 1/f noise o
 
 When the ''-eval'' flag is set, the stimulus-onset asynchrony (SOA) parameter is specified in units of milliseconds (i.e., the time that elapses between the start of one stimulus and the start of the next stimulus). Along with the path-guided de Bruijn sequence, the routine then returns both the detection power, and the correlation coefficient of the guide function (input) with the sequence of distances between stimuli generated (output).
 
-# Basic Examples
+## Basic Examples
 
 |Command|Interpretation|
 |-------|--------------|
@@ -135,9 +135,9 @@ When the ''-eval'' flag is set, the stimulus-onset asynchrony (SOA) parameter is
 |<code>./debruijn -t 10 2 5 HRF my_neural_model_matrix.txt -eval 1500</code>|Generates a deBruijn sequence with 10 labels and 2nd-level counterbalancing, and prints output in terse mode. The sequence is generated using 5 bins, a neural model matrix specified in the file *my_neural_model_matrix.txt*, and a guide function informed by the filtering properties of the BOLD hemodynamic response function is used. A stimulus-onset asynchrony of 1000 milliseconds is used in the evaluation of the sequences, and the theoretical detection power is returned.|
 |<code>./debruijn 17 2 10 my_guide_function.txt my_neural_model_matrix.txt -eval 1000</code>|Generates a deBruijn sequence with 17 labels and 2nd-level counterbalancing, and prints output in normal mode. The sequence is generated using 10 bins, a neural model matrix specified in the file *my_neural_model_matrix.txt*, and a guide function specified in the file *my_guide_function.txt*. A stimulus-onset asynchrony of 1000 milliseconds is used in the evaluation of the sequences, and the theoretical detection power is returned.|
 
-  ====== Example neural model matrices ======
+## Example neural model matrices
 
-===== Carry-over experiments =====
+### Carry-over experiments
 ^  ^k=17, 16 stimuli di-oct^k=6, 5 stimuli linear^k=9, 8 element circular^
 ^Description|16 stimuli in a di-octagon arrangement (Euclidean geometry), stimulus zero as a null-trial, perfect repetitions have undefined distance|5 stimuli in a linear array, stimulus zero as null-trial, perfect repetitions have zero distance|8 stimuli with a circular similarity, stimulus zero as a null-trial, perfect repetitions have zero distance|
 ^Link to file|[[https://cfn.upenn.edu/aguirre/public/debruijn/k=17_16stim_dioct.txt|k=17_16stim_dioct.txt]]|[[https://cfn.upenn.edu/aguirre/public/debruijn/k=6_5stim_linear.txt|k=6_5stim_linear.txt]]|[[https://cfn.upenn.edu/aguirre/public/debruijn/k=9_8stim_circular.txt|k=9_8stim_circular.txt]]|
@@ -146,7 +146,7 @@ When the ''-eval'' flag is set, the stimulus-onset asynchrony (SOA) parameter is
 ^Reference|DM Drucker, WT Kerr, GK Aguirre. (2009) [[http://www.ncbi.nlm.nih.gov/pubmed/19357342?dopt=Abstract |Distinguishing conjoint and independent neural tuning for stimulus features with fMRI adaptation.]] *Journal of Neurophysiology*. June;101(6):3310-24|DA Kahn, AM Harris, DA Wolk, GK Aguirre. (2010) [[http://www.journalofvision.org/content/10/10/12.abstract |Temporally distinct neural coding of perceptual similarity and prototype bias.]] *Journal of Vision*, 10(10):12, 1-12.|  |
 
 
-====== Shell script ======
+## Shell script
 This shell script may be used to search for and retain the best debruijn sequence, or to explore the effect of changes over the parameters of the search.
 
 ```
