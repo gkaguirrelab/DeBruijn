@@ -75,7 +75,7 @@ The *direct effect* is the neural response to a stimulus itself (as opposed to s
 
 To guide de Bruijn sequences for the detection of direct effects, construct the neural model to contain columns of expected relative magnitude of neural response. For example, an ever larger amplitude of response to the A, B, C, and D stimuli may be represented as:
 
-|   | A | B | C | D |
+| - | A | B | C | D |
 | A | 1 | 2 | 3 | 4 |
 | B | 1 | 2 | 3 | 4 |
 | C | 1 | 2 | 3 | 4 |
