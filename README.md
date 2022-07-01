@@ -62,18 +62,23 @@ Path-guiding selects amongst available nodes whose transition match that called 
 Better performance is provided when the number of nodes in each bin is roughly equivalent. For this reason, we recommend selecting B such that [k<sup>2</sup> modulo B] = 0.
 
 ### Neural Model
-The *neural model* represents the expected neural response to stimuli (or transitions between stimuli). Using this information, "path guided" sequences may be created which are optimized for the detection of the hypothesized neural effect.
+The *neural matrix* represents the expected neural response to stimuli (or transitions between stimuli). Using this information, "path guided" sequences may be created which are optimized for the detection of the hypothesized neural effect.
 
-The parameter provides the path to a *k* x *k* matrix of positive floating point values in a plain text file. Columns of the matrix are delimited by spaces, and rows by carriage returns. [[:public:de_bruijn_software#example_neural_model_matrices|Example neural model matrices]] are provided below.
+The parameter provides the path to a *k* x *k* matrix of positive floating point values in a plain text file. Columns of the matrix are delimited by spaces, and rows by carriage returns. Example neural matrices are included in the repository in .txt files.
 
 **NOTE** The code currently requires that the neural matrix file end with the last row of the matrix. Ending the file with an additional newline or carriage return character causes the program to fail with the message: ''The neural model file must have a nxn matrix of floating points''.
 
-For some stimuli (or transitions), the neural model may be left undefined. For example, from a target stimulus or for the stimulus following a "null" trial. For these transitions, a value of ''-1'' may be entered in the neural model matrix. These undefined transitions are randomly distributed throughout the sequence.
+For some stimuli (or transitions), the entry in the neural matrix may be left undefined. For example, from a target stimulus or for the stimulus following a "null" trial. For these transitions, a value of ''-1'' may be entered in the neural model matrix. These undefined transitions are randomly distributed throughout the sequence.
 
 ### Direct Effects
 The *direct effect* is the neural response to a stimulus itself (as opposed to stimulus context). Classically, fMRI designs are optimized to maximize the direct effect. For example, the classic "block design" of alternating between two stimulus conditions every 30 seconds positions the expected neural modulation at an ideal temporal frequency with respect to the BOLD signal and noise properties.
 
 To guide de Bruijn sequences for the detection of direct effects, construct the neural model to contain columns of expected relative magnitude of neural response. For example, an ever larger amplitude of response to the A, B, C, and D stimuli may be represented as:
+
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
 
 ^ ^A^B^C^D^
 ^A|1|2|3|4|
