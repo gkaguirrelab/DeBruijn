@@ -101,6 +101,7 @@ To design a sequence optimized for these effects, create a neural model which re
 In this example, the carry over effects are predicted to be larger for the transition of ''[A ⇒ B]'' as compared to ''[B ⇒ A]'' (for example, transitions towards the "A" end of a linear stimulus space are more salient and perceived as larger).  The transition values represented are:
 
 |prior stimulus|current stimulus|modeled transition|
+|--------------|----------------|------------------|
 |A|C|2|
 |C|A|2.5|
 
