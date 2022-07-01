@@ -75,33 +75,32 @@ The *direct effect* is the neural response to a stimulus itself (as opposed to s
 
 To guide de Bruijn sequences for the detection of direct effects, construct the neural model to contain columns of expected relative magnitude of neural response. For example, an ever larger amplitude of response to the A, B, C, and D stimuli may be represented as:
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-
-^ ^A^B^C^D^
-^A|1|2|3|4|
-^B|1|2|3|4|
-^C|1|2|3|4|
-^D|1|2|3|4|
+|   | A | B | C | D |
+| A | 1 | 2 | 3 | 4 |
+| B | 1 | 2 | 3 | 4 |
+| C | 1 | 2 | 3 | 4 |
+| D | 1 | 2 | 3 | 4 |
 
 The resulting sequence will order the stimuli (within the constraints of counter-balance) to modulate the direct effect.
 
 ### Carry-over Effects
-The transitions between stimuli may be expected to modulate neural response. These are *carry-over effects//((GK Aguirre (2007) [[http://www.ncbi.nlm.nih.gov/pubmed/17376705|Continuous carry-over designs for fMRI.]] *Neuroimage*, 35, 1480-1494.)). Neural adaptation (or habituation) is an example of a (symmetric) carry-over effect.
+The transitions between stimuli may be expected to modulate neural response. These are *carry-over effects*:
+
+* GK Aguirre (2007) [Continuous carry-over designs for fMRI](http://www.ncbi.nlm.nih.gov/pubmed/17376705) *Neuroimage*, 35, 1480-1494.
+
+Neural adaptation (or habituation) is an example of a (symmetric) carry-over effect.
 
 To design a sequence optimized for these effects, create a neural model which represents the effect of pair-wise transitions between the stimuli. The row index indicates the prior stimulus, and the column index indicates the current stimulus. This model, for example, contains both a symmetric (adaptation) effect, and an asymmetric bias effect:
 
-^ ^A^B^C^D^
-^A|0|1|2|3|
-^B|1.5|0|1|2|
-^C|2.5|1.5|0|1|
-^D|3.5|2.5|1.5|0|
+| |A|B|C|D|
+|A|0|1|2|3|
+|B|1.5|0|1|2|
+|C|2.5|1.5|0|1|
+|D|3.5|2.5|1.5|0|
 
 In this example, the carry over effects are predicted to be larger for the transition of ''[A ⇒ B]'' as compared to ''[B ⇒ A]'' (for example, transitions towards the "A" end of a linear stimulus space are more salient and perceived as larger).  The transition values represented are:
 
-^prior stimulus^current stimulus^modeled transition^
+|prior stimulus|current stimulus|modeled transition|
 |A|C|2|
 |C|A|2.5|
 
@@ -110,26 +109,25 @@ Transitions between identical stimuli may be modeled as an undefined transition 
 ### Guide function
 Any valid de Bruijn cycle will provide the specified level of counter-balance amongst the labels, and thus stimuli, of the experiment. Not all orderings of stimuli, however, are equally useful for neuroimaging experiments. Because of the signal and noise properties of fMRI, some temporal frequencies of neural modulation are preferentially detected by the method. The *path-guided* approach to de Bruijn cycle generation encodes in the ordering of the stimuli a hypothesized neural modulation at these preferred frequencies.
 
-To do so, we define a *guide function* in one of three ways:
+To do so, we define a *guide function* in one of three (mutually exclusive) ways:
 
-  * Enter the word ''HRF''. A guide function will be internally generated that has the same power spectrum as the BOLD hemodynamic response function, although with no power below 0.01 Hz. This will generally produce a sequence with good detection power and a stochastic variation in stimulus transitions, although further improvements can be obtained by using a guide function that is positioned solely at a few or a single frequency. **NOTE** An SOA must be specified using the ''-eval'' option for this guide function to be defined.\\  \\  **-OR-**\\  \\
-  * Enter a range of periods (in units of labels), as described by [Tmin,Tmax]. A guide function will be internally generated as the sum of sinusoids of random phase, each having a period equal to an integer between T<sub>min</sub> and T<sub>max</sub>. Enter the same value for T<sub>min</sub> and T<sub>max</sub> to guide the modulation at a single frequency. Generally, when ''(1e5 / SOA in ms) > T > (1e4 / SOA in ms)'' encoded modulations will be within a detectable range for the BOLD system.\\  \\  **-OR-**\\  \\  
+  * Enter the word ''HRF''. A guide function will be internally generated that has the same power spectrum as the BOLD hemodynamic response function, although with no power below 0.01 Hz. This will generally produce a sequence with good detection power and a stochastic variation in stimulus transitions, although further improvements can be obtained by using a guide function that is positioned solely at a few or a single frequency. **NOTE** An SOA must be specified using the ''-eval'' option for this guide function to be defined.
+  * Enter a range of periods (in units of labels), as described by [Tmin,Tmax]. A guide function will be internally generated as the sum of sinusoids of random phase, each having a period equal to an integer between T<sub>min</sub> and T<sub>max</sub>. Enter the same value for T<sub>min</sub> and T<sub>max</sub> to guide the modulation at a single frequency. Generally, when ''(1e5 / SOA in ms) > T > (1e4 / SOA in ms)'' encoded modulations will be within a detectable range for the BOLD system.
   * Provide the path to an external file, which contains k<sup>n</sup> space-separated floating point values. Each element will correspond to a *relative* transition in the output sequence. The elements in the guide function may be either positive or negative; the vector will be normalized.
 
-
-For fMRI, the optimal range of temporal frequencies is ~0.01-0.1 Hz((E Zarahn, GK Aguirre, M D'Esposito. (1997). [[http://www.ncbi.nlm.nih.gov/sites/entrez?Db=pubmed&Cmd=ShowDetailView&TermToSearch=9345548&|Empirical analyses of BOLD fMRI statistics. I. Spatially unsmoothed data collected under null-hypothesis conditions.]] *Neuroimage*, 5, 179-197.)). Higher frequencies are attenuated by the dispersed hemodynamic response, while lower frequencies are lost within the pink (1///f//) noise of the system. Perhaps surprisingly, it is not the case that the best performing sequence is always given by the lowest temporal frequency, even ignoring the presence of 1///f* noise. For some neural models, the available sets of transitions more readily fit higher temporal frequencies. This seems to be true in particular for one-dimensional stimulus spaces with a small number of stimuli. We recommend a search over a range of guide functions using a [[:public:de_bruijn_software#shell_script|shell script]].
-
+For fMRI, the optimal range of temporal frequencies is ~0.01-0.1 Hz (E Zarahn, GK Aguirre, M D'Esposito. (1997). [Empirical analyses of BOLD fMRI statistics. I. Spatially unsmoothed data collected under null-hypothesis conditions](http://www.ncbi.nlm.nih.gov/sites/entrez?Db=pubmed&Cmd=ShowDetailView&TermToSearch=9345548&) *Neuroimage*, 5, 179-197). Higher frequencies are attenuated by the dispersed hemodynamic response, while lower frequencies are lost within the pink (1/f) noise of the system. Perhaps surprisingly, it is not the case that the best performing sequence is always given by the lowest temporal frequency, even ignoring the presence of 1/f noise. For some neural models, the available sets of transitions more readily fit higher temporal frequencies. This seems to be true in particular for one-dimensional stimulus spaces with a small number of stimuli. We recommend a search over a range of guide functions.
 
 The interpretation of the path-guided sequence in Hz requires a specification of the stimulus-onset asynchrony, described next.
 
 ### Evaluation mode and SOA
-Given a particular hemodynamic response function, and a model of the 1///f* noise of the BOLD fMRI system, *detection power//((Thomas Liu. (2004) [[http://www.ncbi.nlm.nih.gov/pubmed/14741677|Efficiency, power, and entropy in event-related fMRI with multiple trial types. Part II: design of experiments]]. *Neuroimage* 21: 401-13.)) is the proportion of neural variance which appears in the imaging signal. It is calculated as the variance of the hypothesized neural modulation proportional to sequential stimulus distance as the denominator, and the numerator as the variance of that modulation after passing through the BOLD fMRI system. In our implementation, the BOLD system is modeled using a standard, population averaged hemodynamic response((GK Aguirre, E Zarahn, M D'Esposito. (1998). [[http://www.ncbi.nlm.nih.gov/pubmed/9811554|The variability of human BOLD hemodynamic responses.]] *NeuroImage*, 8, 360-369.)) and the elevated 1///f* noise range by a 0.01 Hz, high-pass notch filter.
+Given a particular hemodynamic response function, and a model of the 1/f noise of the BOLD fMRI system, *detection power* (Thomas Liu. (2004) [Efficiency, power, and entropy in event-related fMRI with multiple trial types. Part II: design of experiments](http://www.ncbi.nlm.nih.gov/pubmed/14741677). *Neuroimage* 21: 401-13.) is the proportion of neural variance which appears in the imaging signal. It is calculated as the variance of the hypothesized neural modulation proportional to sequential stimulus distance as the denominator, and the numerator as the variance of that modulation after passing through the BOLD fMRI system. In our implementation, the BOLD system is modeled using a standard, population averaged hemodynamic response (GK Aguirre, E Zarahn, M D'Esposito. (1998). [The variability of human BOLD hemodynamic responses](http://www.ncbi.nlm.nih.gov/pubmed/9811554) *NeuroImage*, 8, 360-369.) and the elevated 1/f noise range by a 0.01 Hz, high-pass notch filter.
 
 When the ''-eval'' flag is set, the stimulus-onset asynchrony (SOA) parameter is specified in units of milliseconds (i.e., the time that elapses between the start of one stimulus and the start of the next stimulus). Along with the path-guided de Bruijn sequence, the routine then returns both the detection power, and the correlation coefficient of the guide function (input) with the sequence of distances between stimuli generated (output).
 
 # Basic Examples
 
-^Command^Interpretation^
+|Command|Interpretation|
+|-------|--------------|
 |<code>./debruijn -h</code>|Displays the usage information.|
 |<code>./debruijn 17 3</code>|Generates a deBruijn sequence with 17 labels and 3rd-level counterbalancing.|
 |<code>./debruijn -v 17 3</code>|Generates a deBruijn sequence with 17 labels and 3rd-level counterbalancing, and prints output in verbose mode.|
