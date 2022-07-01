@@ -140,14 +140,11 @@ When the ''-eval'' flag is set, the stimulus-onset asynchrony (SOA) parameter is
 
 ## Example neural model matrices
 
-### Carry-over experiments
-^  ^k=17, 16 stimuli di-oct^k=6, 5 stimuli linear^k=9, 8 element circular^
-^Description|16 stimuli in a di-octagon arrangement (Euclidean geometry), stimulus zero as a null-trial, perfect repetitions have undefined distance|5 stimuli in a linear array, stimulus zero as null-trial, perfect repetitions have zero distance|8 stimuli with a circular similarity, stimulus zero as a null-trial, perfect repetitions have zero distance|
-^Link to file|[[https://cfn.upenn.edu/aguirre/public/debruijn/k=17_16stim_dioct.txt|k=17_16stim_dioct.txt]]|[[https://cfn.upenn.edu/aguirre/public/debruijn/k=6_5stim_linear.txt|k=6_5stim_linear.txt]]|[[https://cfn.upenn.edu/aguirre/public/debruijn/k=9_8stim_circular.txt|k=9_8stim_circular.txt]]|
-^Matrix|  {{:public:seqs:dioctsim.png?100}}  |  {{:public:seqs:5x5_lin_simspace.png?100}}  |  {{:public:seqs:8x8_circ_simspace.png?100}}  |
-^Example|  {{:public:seqs:dioctspace.png?100}}  |  {{:public:seqs:5facelinearmorph.png?200}}  |  {{:public:seqs:8circ.png?200}}  |
-^Reference|DM Drucker, WT Kerr, GK Aguirre. (2009) [[http://www.ncbi.nlm.nih.gov/pubmed/19357342?dopt=Abstract |Distinguishing conjoint and independent neural tuning for stimulus features with fMRI adaptation.]] *Journal of Neurophysiology*. June;101(6):3310-24|DA Kahn, AM Harris, DA Wolk, GK Aguirre. (2010) [[http://www.journalofvision.org/content/10/10/12.abstract |Temporally distinct neural coding of perceptual similarity and prototype bias.]] *Journal of Vision*, 10(10):12, 1-12.|  |
-
+|file name|image|description|
+|---------|-----|-----------|
+|<code>k=17_16stim_dioct.txt</code>|dioctspace.png|16 stimuli in a di-octagon arrangement (Euclidean geometry), stimulus zero as a null-trial, perfect repetitions have undefined distance|
+|<code>k=6_5stim_linear.txt</code>|5facelinearmorph.png|5 stimuli in a linear array, stimulus zero as null-trial, perfect repetitions have zero distance|
+|<code>k=9_8stim_circular.txt</code>|8x8_circ_simspace.png|8 stimuli with a circular similarity, stimulus zero as a null-trial, perfect repetitions have zero distance|
 
 ## Shell script
 This shell script may be used to search for and retain the best debruijn sequence, or to explore the effect of changes over the parameters of the search.
