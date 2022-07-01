@@ -149,7 +149,7 @@ When the ''-eval'' flag is set, the stimulus-onset asynchrony (SOA) parameter is
 ====== Shell script ======
 This shell script may be used to search for and retain the best debruijn sequence, or to explore the effect of changes over the parameters of the search.
 
-<code=bash>
+```
 #######################################
 # Finds the best de Bruijn sequence
 #######################################
@@ -199,4 +199,4 @@ do
 done
 
 done
-</code>
+```
