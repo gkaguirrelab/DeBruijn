@@ -143,8 +143,8 @@ When the ''-eval'' flag is set, the stimulus-onset asynchrony (SOA) parameter is
 |file name|image|description|
 |---------|-----|-----------|
 |[k=17_16stim_dioct.txt](exampleNeuralMatrices/k=17_16stim_dioct.txt)| ![](exampleNeuralMatrices/dioctspace.png) |16 stimuli in a di-octagon arrangement (Euclidean geometry), stimulus zero as a null-trial, perfect repetitions have undefined distance|
-|<code>k=6_5stim_linear.txt</code>| ![](exampleNeuralMatrices/5facelinearmorph.png) |5 stimuli in a linear array, stimulus zero as null-trial, perfect repetitions have zero distance|
-|<code>k=9_8stim_circular.txt</code>| ![](exampleNeuralMatrices/8circ.png) |8 stimuli with a circular similarity, stimulus zero as a null-trial, perfect repetitions have zero distance|
+|[k=6_5stim_linear.txt](exampleNeuralMatrices/k=6_5stim_linear.txt)| ![](exampleNeuralMatrices/5facelinearmorph.png) |5 stimuli in a linear array, stimulus zero as null-trial, perfect repetitions have zero distance|
+|[k=9_8stim_circular.txt](exampleNeuralMatrices/k=9_8stim_circular.txt)| ![](exampleNeuralMatrices/8circ.png) |8 stimuli with a circular similarity, stimulus zero as a null-trial, perfect repetitions have zero distance|
 
 ## Shell script
 This shell script may be used to search for and retain the best debruijn sequence, or to explore the effect of changes over the parameters of the search.
